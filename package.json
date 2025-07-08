@@ -1,0 +1,25 @@
+{
+  "name": "next-swim-event",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "workspaces": [
+    "projects/*"
+  ],
+  "keywords": [
+    "swim"
+  ],
+  "homepage": "https://github.com/no4any/next-swim-event#readme",
+  "bugs": {
+    "url": "https://github.com/no4any/next-swim-event/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/no4any/next-swim-event.git"
+  },
+  "license": "MIT",
+  "author": "no4any",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
