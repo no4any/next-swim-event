@@ -1,9 +1,7 @@
-import RegisterSwimmerForm from "@/components/forms/RegisterSwimmerForm.component";
-import RegisterTeamForm from "@/components/forms/RegisterTeamForm.component";
+import Register from "./Register";
 
 export default function Anmeldung() {
   return <div>
-    <RegisterSwimmerForm />
-    <RegisterTeamForm />
+    <Register />
   </div>
 }

@@ -13,7 +13,7 @@ export const Swimmer = z.object({
     gender: z.enum(["0", "M", "W"]),
     city: z.string().optional(),
     distanceRating: z.boolean(),
-    birthday: z.date().optional(),
+    birthday: z.iso.date().optional(),
     teamId: z.string().min(2).optional(),
     breakfast: z.boolean(),
     allowsPublishingName: z.boolean(),
