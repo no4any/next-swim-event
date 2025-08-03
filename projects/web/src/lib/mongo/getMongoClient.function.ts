@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 
-const CONNECTION_STRING = 'mongodb://localhost:27017';
+const CONNECTION_STRING = process.env.CONNECTION_STRING || 'mongodb://localhost:27017';
 
 const MONGO_USERNAME = process.env.MONGO_INITDB_ROOT_USERNAME || 'root';
 const MONGO_PASSWORD = process.env.MONGO_INITDB_ROOT_PASSWORD || 'root';
