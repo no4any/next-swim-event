@@ -19,7 +19,7 @@ services:
     env_file:
       - .env
     volumes:
-      - /data/next-swim-event:/data
+      - /data/next-swim-event/json:/data
     depends_on:
       - mongo
   mongo:
@@ -27,3 +27,5 @@ services:
     restart: always
     env_file:
       - .env
+    volumes:
+      - /data/next-swim-event/mongo:/data/db
