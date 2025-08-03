@@ -1,0 +1,6 @@
+export * from './addCapColor.function'
+export * from './deleteCapColor.function'
+export * from './getCapColor.function'
+export * from './getCapColors.function'
+export * from './getCapColorsCollection.function'
+export * from './updateCapColor.function'
