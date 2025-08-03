@@ -8,6 +8,7 @@ const MONGO_PASSWORD = process.env.MONGO_INITDB_ROOT_PASSWORD || 'root';
 var mongo: MongoClient | undefined;
 
 export async function getMongoClient(): Promise<MongoClient> {
+    console.log("Connection to", CONNECTION_STRING);
     if(mongo === undefined) {
         console.log("Creating MongoClient");
         mongo = await new MongoClient(CONNECTION_STRING, {
