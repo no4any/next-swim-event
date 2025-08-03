@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import "./globals.css";
-
 
 export const metadata: Metadata = {
   title: "Anmeldung zum 24 Stunden Schwimmen 2025",
