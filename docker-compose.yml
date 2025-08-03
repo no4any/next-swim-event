@@ -16,6 +16,8 @@ services:
     build:
       context: projects/web
     restart: always
+    env_file:
+      - .env
     volumes:
       - /data/next-swim-event:/data
     depends_on:
