@@ -1,3 +1,4 @@
+import { DOMAIN } from "@/env";
 import swimHash from "@/lib/swimHash.function";
 import { notFound } from "next/navigation";
 
@@ -13,7 +14,7 @@ export default async function SwimmerPage({ params }: { params: Promise<{ id: st
         notFound();
     }
 
-    const link = `https://dlrg-giessen.de/anmelden/${id}`;
+    const link = `https://${DOMAIN}/anmelden/${id}`;
 
     return <div>
         <h1>Ihre Daten</h1>
