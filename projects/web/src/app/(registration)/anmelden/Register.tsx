@@ -16,8 +16,7 @@ export default function Register({ team }: { team?: string }) {
     {state.teamError && <ErrorBlock>Der Teamname ist bereits vergeben.</ErrorBlock>}
     <form action={formAction}>
       <RegisterSwimmerForm />
-      {team ? undefined : <RegisterTeamForm />}
-      <input type="hidden" name="teamId" value={team} />
+      {team ? <input type="hidden" name="teamId" value={team} /> : <RegisterTeamForm />}
       <SubmitButton>Anmelden</SubmitButton>
     </form>
   </div>
