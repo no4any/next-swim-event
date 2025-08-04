@@ -1,9 +1,11 @@
 import Grid from "@/components/grid/Grid.component";
 import { DOMAIN } from "@/env";
+import { Swimmer } from "@/lib/model";
 import { getSwimmer } from "@/lib/mongo/collections/swimmers/getSwimmer.function";
 import { getSwimmersInTeam } from "@/lib/mongo/collections/swimmers/getSwimmersInTeam.function";
 import getTeam from "@/lib/mongo/collections/teams/getTeam.function";
 import swimHash from "@/lib/swimHash.function";
+import { ObjectId } from "mongodb";
 import { notFound } from "next/navigation";
 import { ReactNode } from "react";
 
@@ -57,19 +59,27 @@ export default async function SwimmerPage({ params }: { params: Promise<{ id: st
             <Detail title="Team" value={team?.name ? team?.name : <i>Kein Team</i>} />
         </Grid>
 
-        {isTeamLead && <><h2>Ihr Team</h2>
-            <Grid>
-                <div className="font-bold">Name</div>
-                <div className="font-bold">Geburtsdatum</div>
-                <div className="font-bold">Geschlecht</div>
-            </Grid>
-            {(await getSwimmersInTeam(team._id)).map(swimmer => <Grid key={swimmer?._id?.toString() || ""}>
-                <div>{swimmer.firstName} {swimmer.lastName}</div>
-                <div>{swimmer.birthday}</div>
-                <div>{swimmer.gender}</div>
-            </Grid>)}
-        </>}
+        <Team isLead={isTeamLead} swimmers={await getSwimmersInTeam(team?._id || "")}/>
     </div>
+}
+
+function Team({ isLead, swimmers }: { isLead: boolean, swimmers: Swimmer[] }) {
+    if (!isLead) {
+        return <></>
+    }
+
+    return isLead && <><h2>Ihr Team</h2>
+        <Grid>
+            <div className="font-bold">Name</div>
+            <div className="font-bold">Geburtsdatum</div>
+            <div className="font-bold">Geschlecht</div>
+        </Grid>
+        {swimmers.map(swimmer => <Grid key={swimmer?._id?.toString() || ""}>
+            <div>{swimmer.firstName} {swimmer.lastName}</div>
+            <div>{swimmer.birthday}</div>
+            <div>{swimmer.gender}</div>
+        </Grid>)}
+    </>
 }
 
 function Detail({ title, value }: { title: string, value: string | ReactNode }) {
