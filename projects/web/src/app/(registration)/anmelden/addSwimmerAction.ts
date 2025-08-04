@@ -6,6 +6,7 @@ import { deleteSwimmer } from "@/lib/mongo/collections/swimmers/deleteSwimmer.fu
 import setTeamForSwimmer from "@/lib/mongo/collections/swimmers/setTeamForSwimmer.function";
 import addTeam from "@/lib/mongo/collections/teams/addTeam.function";
 import swimHash from "@/lib/swimHash.function";
+import { ObjectId } from "mongodb";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -23,6 +24,7 @@ export async function parseSwimmer(data: FormData): Promise<Swimmer> {
         distanceRating: data.get("distanceRating")?.toString() !== "on",
         breakfast: data.get("breakfast")?.toString() === "on",
         allowsPublishingName: data.get("allowsPublishingName")?.toString() !== "on",
+        newsletter: data.get("newsletter")?.toString() === "on",
         teamId: data.get("teamId")?.toString() || undefined
     }
 
@@ -43,23 +45,27 @@ async function parseTeam(data: FormData, owner: string): Promise<Team> {
 
 export default async function (initialState: {}, data: FormData): Promise<{ userError?: boolean, teamError?: boolean }> {
     let redirectPath = "";
+    let teamId: string | ObjectId = "";
 
     try {
         const swimmer = await parseSwimmer(data);
         const swimmerAddResult = await addSwimmer(swimmer);
-        try {
-            const team = await parseTeam(data, swimmerAddResult.insertedId.toString());
-            const teamAddResult = await addTeam(team);
 
-            await setTeamForSwimmer(swimmer._id || "", team._id)
-        } catch (ee) {
-            console.log(ee);
-            await deleteSwimmer(swimmer._id || "");
-            return { teamError: true }
+        if (data.get("addTeam")?.toString() === "on") {
+            try {
+                const team = await parseTeam(data, swimmerAddResult.insertedId.toString());
+                const teamResponse = await addTeam(team);
+
+                await setTeamForSwimmer(swimmer._id || "", team._id)
+            } catch (ee) {
+                console.log(ee);
+                await deleteSwimmer(swimmer._id || "");
+                return { teamError: true }
+            }
         }
 
         const swimmerId = swimmerAddResult.insertedId instanceof Object ? swimmerAddResult.insertedId.toString() : swimmerAddResult.insertedId;
-        redirectPath = `/anmelden/${swimmerId}/${await swimHash(swimmerId)}`;        
+        redirectPath = `/anmelden/${swimmerId}/${await swimHash(swimmerId)}`;
     } catch (e) {
         console.log(e);
         return { userError: true }
