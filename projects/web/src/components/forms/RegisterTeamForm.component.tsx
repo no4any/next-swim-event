@@ -10,7 +10,7 @@ export default function RegisterTeamForm() {
 
     return <div>
         <div>
-            <InputCheckbox name="addTeam" checked={select} onChange={() => setSelect(!select)}>
+            <InputCheckbox name="addTeam" checked={select} onChange={e => setSelect(e.target.checked)}>
                 Ich möchte ein Team anmelden <span className="italic">(Sie erhalten nach erfolgreicher Anmeldung einen Link über den sich zukünftige Teammitglieder anmelden können. Teammitglieder ohne E-Mail Adresse können sie hier selbstständig eintragen.)</span>
             </InputCheckbox>
         </div>

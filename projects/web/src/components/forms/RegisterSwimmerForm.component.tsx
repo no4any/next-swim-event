@@ -6,14 +6,14 @@ import InputDate from "../input/InputDate.component";
 import InputSelect from "../input/InputSelect.component";
 import InputText from "../input/InputText.component"
 
-type RegisterSwimmerFormProps = React.DetailedHTMLProps<React.FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>;
+type RegisterSwimmerFormProps = React.DetailedHTMLProps<React.FormHTMLAttributes<HTMLFormElement>, HTMLFormElement> & { skipMail?: boolean };
 
 export default function RegisterSwimmerForm(props: RegisterSwimmerFormProps) {
     return <div className="mb-4 mt-4">
         <Grid>
-            <div><InputText title="Vorname" name="firstName" /> </div>
-            <div><InputText title="Name" name="lastName" /> </div>
-            <div><InputText title="E-Mail" name="email" /> </div>
+            <div><InputText title="Vorname" name="firstName" required /> </div>
+            <div><InputText title="Name" name="lastName" required /> </div>
+            {!props.skipMail && <div><InputText title="E-Mail" name="email" required /></div>}
             <div><InputText title="Stadt" name="city" /></div>
             <div><InputSelect title="Geschlecht" name="gender" options={[
                 { name: "Keine Angabe", value: "0" },
@@ -21,12 +21,12 @@ export default function RegisterSwimmerForm(props: RegisterSwimmerFormProps) {
                 { name: "Weiblich", value: "W" }
             ]} /></div>
             <div><InputDate title="Geburtsdatum" name="birthday" /></div>
-        </Grid>
+        </Grid >
         <div>
             <InputCheckbox name="breakfast">Ich möchte Frühstück (6€ bei Anmeldung zusätzlich zu bezahlen)</InputCheckbox>
             <InputCheckbox name="distanceRating">Ich möchte <span className="font-bold underline">NICHT</span> an der Distanzwertung  teilnehmen</InputCheckbox>
             <InputCheckbox name="allowsPublishingName">Ich möchte <span className="font-bold underline">NICHT</span> dass mein Name mit meinen Leistungen veröffentlicht wird (<span className="font-bold italic">Führt zum Ausschluss von allen Wertungen und Siegerehrungen</span>)</InputCheckbox>
-            <InputCheckbox name="newsletter">Ich möchte über zukünftige Veranstaltungen per Mail informiert werden</InputCheckbox>
+            {!props.skipMail && <InputCheckbox name="newsletter">Ich möchte über zukünftige Veranstaltungen per Mail informiert werden</InputCheckbox>}
         </div>
-    </div>
+    </div >
 }

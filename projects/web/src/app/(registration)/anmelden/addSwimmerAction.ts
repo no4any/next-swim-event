@@ -45,7 +45,6 @@ async function parseTeam(data: FormData, owner: string): Promise<Team> {
 
 export default async function (initialState: {}, data: FormData): Promise<{ userError?: boolean, teamError?: boolean }> {
     let redirectPath = "";
-    let teamId: string | ObjectId = "";
 
     try {
         const swimmer = await parseSwimmer(data);
@@ -67,7 +66,6 @@ export default async function (initialState: {}, data: FormData): Promise<{ user
         const swimmerId = swimmerAddResult.insertedId instanceof Object ? swimmerAddResult.insertedId.toString() : swimmerAddResult.insertedId;
         redirectPath = `/anmelden/${swimmerId}/${await swimHash(swimmerId)}`;
     } catch (e) {
-        console.log(e);
         return { userError: true }
     }
 
