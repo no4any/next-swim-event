@@ -19,6 +19,7 @@ async function parseSwimmer(data: FormData): Promise<Swimmer> {
         isRegistered: false,
         isClosed: false,
         isManaged: true,
+        email: undefined,
         firstName: data.get("firstName")?.toString() || "",
         lastName: data.get("lastName")?.toString() || "",
         city: data.get("city")?.toString().length ? data.get("city")?.toString() : undefined,
@@ -28,13 +29,14 @@ async function parseSwimmer(data: FormData): Promise<Swimmer> {
         breakfast: data.get("breakfast")?.toString() === "on",
         allowsPublishingName: data.get("allowsPublishingName")?.toString() !== "on",
         newsletter: data.get("newsletter")?.toString() === "on",
-        teamId: data.get("teamId")?.toString()
+        teamId: data.get("teamId")?.toString(),
+        managerId: data.get("id")?.toString()
     }
 
     return Swimmer.parse(composedData);
 }
 
-export default async function addManagedSwimmerAction(_initialData: any, formData: FormData) {
+export default async function addManagedSwimmerAction(_initialData: any, formData: FormData):Promise<{teamNotExistsError?: boolean, hashError?:boolean, swimmerError?:boolean}> {
     const { id, hash } = await getIdAndHash(formData);
 
     if (!checkHash(id, hash)) {
@@ -51,6 +53,7 @@ export default async function addManagedSwimmerAction(_initialData: any, formDat
         }
 
     } catch (e) {
+        console.log(e);
         return { swimmerError: true }
     }
 

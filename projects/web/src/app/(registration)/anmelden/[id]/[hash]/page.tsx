@@ -1,6 +1,6 @@
 import Grid from "@/components/grid/Grid.component";
 import { DOMAIN } from "@/env";
-import { Swimmer } from "@/lib/model";
+import { Swimmer, Team } from "@/lib/model";
 import { getSwimmer } from "@/lib/mongo/collections/swimmers/getSwimmer.function";
 import { getSwimmersInTeam } from "@/lib/mongo/collections/swimmers/getSwimmersInTeam.function";
 import getTeam from "@/lib/mongo/collections/teams/getTeam.function";
@@ -8,6 +8,10 @@ import { notFound } from "next/navigation";
 import { ReactNode } from "react";
 import AddManagedSwimmerForm from "./AddManagedSwimmerForm.component";
 import checkHash from "@/lib/checkHash.function";
+import removeSwimmerAction from "./removeSwimmerAction";
+import Detail from "@/components/Detail.component";
+import TeamManagement from "./TeamManagement.component";
+import plain from "@/lib/plain.function";
 
 
 export default async function SwimmerPage({ params }: { params: Promise<{ id: string, hash: string }> }) {
@@ -31,6 +35,9 @@ export default async function SwimmerPage({ params }: { params: Promise<{ id: st
     }
 
     const link = `https://${DOMAIN}/anmelden/${team?._id.toString() || "fehler"}`;
+
+    const teamSwimmers = await plain(isTeamLead?await getSwimmersInTeam(team?._id || ""):[]);
+    console.log(teamSwimmers);
 
     return <div>
         <h1 className="mb-4">Ihre Daten {isTeamLead && "und Teammanagement"}</h1>
@@ -56,34 +63,6 @@ export default async function SwimmerPage({ params }: { params: Promise<{ id: st
             <Detail title="Team" value={team?.name ? team?.name : <i>Kein Team</i>} />
         </Grid>
 
-        <Team id={id} hash={hash} teamId={team?._id.toString() || ""} isLead={isTeamLead} swimmers={await getSwimmersInTeam(team?._id || "")} />
-    </div>
-}
-
-function Team({ isLead, swimmers, teamId, id, hash }: { isLead: boolean, swimmers: Swimmer[], teamId: string, id:string, hash:string }) {
-    if (!isLead) {
-        return <></>
-    }
-
-    return isLead && <><h2>Ihr Team</h2>
-        <Grid>
-            <div className="font-bold">Name</div>
-            <div className="font-bold">Geburtsdatum</div>
-            <div className="font-bold">Geschlecht</div>
-        </Grid>
-        {swimmers.map(swimmer => <Grid key={swimmer?._id?.toString() || ""}>
-            <div>{swimmer.firstName} {swimmer.lastName}</div>
-            <div>{swimmer.birthday}</div>
-            <div>{swimmer.gender}</div>
-        </Grid>)}
-        <h2 className="my-4">Schwimmer hinzufügen</h2>
-        <AddManagedSwimmerForm id={id} hash={hash} teamId={teamId} />
-    </>
-}
-
-function Detail({ title, value }: { title: string, value: string | ReactNode }) {
-    return <div>
-        <div className="font-bold">{title}</div>
-        <div>{value}</div>
+        <TeamManagement id={id} hash={hash} teamId={team?._id?.toString() || ""} isLead={isTeamLead} swimmers={teamSwimmers} />
     </div>
 }

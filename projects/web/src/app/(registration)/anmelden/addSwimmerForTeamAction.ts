@@ -13,7 +13,7 @@ export default async function addSwimmerForTeamAction(initialState: {}, data: Fo
     try {
         const swimmer = await parseSwimmer(data);
 
-        if (!await getTeam(swimmer.teamId || "")) {
+        if (await getTeam(swimmer.teamId || "") === null) {
             return {teamError: true}
         }
 

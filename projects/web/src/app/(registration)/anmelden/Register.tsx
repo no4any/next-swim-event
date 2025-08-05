@@ -9,7 +9,7 @@ import ErrorBlock from "@/components/ErrorBlock.component"
 import addSwimmerForTeamAction from "./addSwimmerForTeamAction"
 
 export default function Register({ team }: { team?: string }) {
-  const [state, formAction] = useActionState(team ? addSwimmerForTeamAction : addSwimmerAction, {})
+  const [state, formAction] = useActionState(team ? addSwimmerForTeamAction : addSwimmerAction, {});
 
   return <div>
     {state.userError && <ErrorBlock>Es ist ein Fehler Aufgetreten Voraussichtlich ist die E-Mail Adresse bereits vergeben oder nicht korrekt.</ErrorBlock>}
