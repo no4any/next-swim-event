@@ -22,6 +22,6 @@
   "scripts": {
     "dev": "docker compose --file docker-compose.dev.yml up",
     "prod": "docker compose up -d --build",
-    "cert:update": "docker run -it --rm --name certbot -p 80:80 -v \"/etc/letsencrypt:/etc/letsencrypt\" -v \"/var/lib/letsencrypt:/var/lib/letsencrypt\" certbot/certbot certonly -d dlrg-giessen.de --standalone"
+    "cert:update": "docker run -it --rm --name certbot -p 80:80 -v \"/etc/letsencrypt:/etc/letsencrypt\" -v \"/var/lib/letsencrypt:/var/lib/letsencrypt\" certbot/certbot certonly --standalone"
   }
 }
