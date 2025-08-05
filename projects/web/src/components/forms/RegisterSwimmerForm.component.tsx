@@ -31,7 +31,6 @@ export default function RegisterSwimmerForm({swimmer, skipMail, onChange}: Regis
     }
 
     return <div className="mb-4 mt-4">
-        <div>{JSON.stringify(swimmer)}</div>
         <Grid>
             <div><InputText disabled={status.pending} value={swimmer.firstName} onChange={handleString} title="Vorname" name="firstName" required /> </div>
             <div><InputText disabled={status.pending} value={swimmer.lastName} onChange={handleString} title="Name" name="lastName" required /> </div>
