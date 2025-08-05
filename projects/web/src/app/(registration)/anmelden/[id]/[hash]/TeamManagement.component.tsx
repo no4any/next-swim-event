@@ -33,7 +33,7 @@ export default function TeamManagement({ isLead, swimmers, teamId, id, hash }: {
                 </>} /></div>
             </Grid>
         </div>)}
-        <h2 className="my-4">Schwimmer hinzufügen zu Team hinzufügen</h2>
+        <h2 className="my-4">Schwimmer zum Team hinzufügen</h2>
         <AddManagedSwimmerForm id={id} hash={hash} teamId={teamId} />
     </>
 }
