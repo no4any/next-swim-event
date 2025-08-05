@@ -24,7 +24,7 @@ export default async function addSwimmerForTeamAction(initialState: {}, data: Fo
         const swimmerId = swimmerAddResult.insertedId instanceof Object ? swimmerAddResult.insertedId.toString() : swimmerAddResult.insertedId;
         redirectPath = `/anmelden/${swimmerId}/${await swimHash(swimmerId)}`;
     } catch (e) {
-        console.log(e);
+        console.error(e);
         return { userError: true }
     }
 

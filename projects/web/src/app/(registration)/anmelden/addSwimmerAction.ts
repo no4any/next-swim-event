@@ -57,7 +57,7 @@ export default async function (initialState: {}, data: FormData): Promise<{ user
 
                 await setTeamForSwimmer(swimmer._id || "", team._id)
             } catch (ee) {
-                console.log(ee);
+                console.error(ee);
                 await deleteSwimmer(swimmer._id || "");
                 return { teamError: true }
             }
@@ -66,6 +66,7 @@ export default async function (initialState: {}, data: FormData): Promise<{ user
         const swimmerId = swimmerAddResult.insertedId instanceof Object ? swimmerAddResult.insertedId.toString() : swimmerAddResult.insertedId;
         redirectPath = `/anmelden/${swimmerId}/${await swimHash(swimmerId)}`;
     } catch (e) {
+        console.error(e);
         return { userError: true }
     }
 
