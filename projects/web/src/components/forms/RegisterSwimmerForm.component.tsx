@@ -46,7 +46,7 @@ export default function RegisterSwimmerForm({swimmer, skipMail, onChange}: Regis
         <div className="mt-4">
             <InputCheckbox disabled={status.pending} checked={swimmer.breakfast} onChange={handleChecked} name="breakfast">Ich möchte Frühstück (6€ bei Anmeldung zusätzlich zu bezahlen)</InputCheckbox>
             <InputCheckbox disabled={status.pending} checked={swimmer.distanceRating} onChange={handleChecked} name="distanceRating">Ich möchte <span className="font-bold underline">NICHT</span> an der Distanzwertung  teilnehmen (<span className="font-bold italic">Führt zum Ausschluss von allen Wertungen und Siegerehrungen</span>)</InputCheckbox>
-            <InputCheckbox disabled={status.pending} checked={swimmer.allowsPublishingName} onChange={handleChecked} name="allowsPublishingName">Ich möchte <span className="font-bold underline">NICHT</span> dass mein Name mit meinen Leistungen veröffentlicht wird (<span className="font-bold italic">Führt dazu, dass bei veröffentlichung von Ergebnissen Ihr name nicht angezeigt wird)</span></InputCheckbox>
+            <InputCheckbox disabled={status.pending} checked={swimmer.allowsPublishingName} onChange={handleChecked} name="allowsPublishingName">Ich möchte <span className="font-bold underline">NICHT</span> dass mein Name mit meinen Leistungen veröffentlicht wird (<span className="font-bold italic">Führt dazu, dass bei veröffentlichung von Ergebnissen Ihr Name nicht angezeigt wird)</span></InputCheckbox>
             {!skipMail && <InputCheckbox disabled={status.pending} checked={swimmer.newsletter} onChange={handleChecked} name="newsletter">Ich möchte über zukünftige Veranstaltungen per Mail informiert werden</InputCheckbox>}
         </div>
     </div >
