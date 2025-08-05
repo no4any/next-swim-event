@@ -21,6 +21,7 @@
   "author": "no4any",
   "scripts": {
     "dev": "docker compose --file docker-compose.dev.yml up",
+    "dev:down": "docker compose --file docker-compose.dev.yml down",
     "prod": "docker compose up -d --build",
     "cert:update": "docker run -it --rm --name certbot -p 80:80 -v \"/etc/letsencrypt:/etc/letsencrypt\" -v \"/var/lib/letsencrypt:/var/lib/letsencrypt\" certbot/certbot certonly --standalone"
   }
