@@ -1,20 +1,22 @@
 "use server"
 
 import { revalidatePath } from "next/cache";
-import { notFound, redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 import { parseSwimmer } from "./addSwimmerAction";
 import { addSwimmer } from "@/lib/mongo/collections";
 import swimHash from "@/lib/swimHash.function";
 import getTeam from "@/lib/mongo/collections/teams/getTeam.function";
 
 export default async function addSwimmerForTeamAction(initialState: {}, data: FormData): Promise<{ userError?: boolean, teamError?: boolean }> {
+    let teamPath = "";
     let redirectPath = "";
 
     try {
         const swimmer = await parseSwimmer(data);
 
         if (await getTeam(swimmer.teamId || "") === null) {
-            return {teamError: true}
+            teamPath = `/anmelden/${swimmer.teamId}`;
+            return { teamError: true }
         }
 
         const swimmerAddResult = await addSwimmer(swimmer);
@@ -26,6 +28,7 @@ export default async function addSwimmerForTeamAction(initialState: {}, data: Fo
         return { userError: true }
     }
 
+    revalidatePath(teamPath);
     revalidatePath(redirectPath);
     redirect(redirectPath);
 }

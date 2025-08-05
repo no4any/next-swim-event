@@ -5,11 +5,13 @@ import removeSwimmerAction from "./removeSwimmerAction";
 import Grid from "@/components/grid/Grid.component";
 import Detail from "@/components/Detail.component";
 import AddManagedSwimmerForm from "./AddManagedSwimmerForm.component";
+import SmallButton from "@/components/input/SmallButton.component";
+import dateToString from "@/lib/dateToString.function";
 
 export default function TeamManagement({ isLead, swimmers, teamId, id, hash }: { isLead: boolean, swimmers: Swimmer[], teamId: string, id: string, hash: string }) {
-    async function remove(swimmerId: string) {
-        if (confirm('Wirklich löschen?')) {
-            await removeSwimmerAction(swimmerId, id, hash);
+    async function remove(swimmer: Swimmer) {
+        if (confirm(`${swimmer.firstName} ${swimmer.lastName} wirklich löschen?`)) {
+            await removeSwimmerAction(swimmer._id?.toString() || "", id, hash);
         }
     }
 
@@ -18,11 +20,14 @@ export default function TeamManagement({ isLead, swimmers, teamId, id, hash }: {
     }
 
     return isLead && <><h2 className="mt-4">Ihr Team</h2>
-        {swimmers.map(swimmer => <div key={swimmer?._id?.toString() || ""} className="hover:bg-gray-100/30  rounded">
+        {swimmers.map(swimmer => <div key={swimmer?._id?.toString() || ""} className="hover:bg-gray-100/30 py-3 rounded">
             <Grid>
                 <div><Detail title="Name" value={`${swimmer.lastName}, ${swimmer.firstName}`} /></div>
-                <div><Detail title="Geburtstag" value={swimmer.birthday} /></div>
-                <div><Detail title="Optionen" value={<button onClick={() => remove(swimmer._id?.toString() || "")}>Entfernen</button>} /></div>
+                <div><Detail title="Geburtstag" value={swimmer.birthday && dateToString(new Date(swimmer.birthday))} /></div>
+                <div><Detail title="Optionen" value={<>
+                    {id !== swimmer._id?.toString() && <SmallButton className="mr-4" color="RED" onClick={() => remove(swimmer)}>Entfernen</SmallButton>}
+                    <SmallButton color="GREEN">Details</SmallButton>
+                </>} /></div>
             </Grid>
         </div>)}
         <h2 className="my-4">Schwimmer hinzufügen</h2>

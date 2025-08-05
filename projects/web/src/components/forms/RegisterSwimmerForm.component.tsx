@@ -24,8 +24,8 @@ export default function RegisterSwimmerForm(props: RegisterSwimmerFormProps) {
         </Grid >
         <div className="mt-4">
             <InputCheckbox name="breakfast">Ich möchte Frühstück (6€ bei Anmeldung zusätzlich zu bezahlen)</InputCheckbox>
-            <InputCheckbox name="distanceRating">Ich möchte <span className="font-bold underline">NICHT</span> an der Distanzwertung  teilnehmen</InputCheckbox>
-            <InputCheckbox name="allowsPublishingName">Ich möchte <span className="font-bold underline">NICHT</span> dass mein Name mit meinen Leistungen veröffentlicht wird (<span className="font-bold italic">Führt zum Ausschluss von allen Wertungen und Siegerehrungen</span>)</InputCheckbox>
+            <InputCheckbox name="distanceRating">Ich möchte <span className="font-bold underline">NICHT</span> an der Distanzwertung  teilnehmen (<span className="font-bold italic">Führt zum Ausschluss von allen Wertungen und Siegerehrungen</span>)</InputCheckbox>
+            <InputCheckbox name="allowsPublishingName">Ich möchte <span className="font-bold underline">NICHT</span> dass mein Name mit meinen Leistungen veröffentlicht wird (<span className="font-bold italic">Führt dazu, dass bei veröffentlichung von Ergebnissen Ihr name nicht angezeigt wird)</span>)</InputCheckbox>
             {!props.skipMail && <InputCheckbox name="newsletter">Ich möchte über zukünftige Veranstaltungen per Mail informiert werden</InputCheckbox>}
         </div>
     </div >
