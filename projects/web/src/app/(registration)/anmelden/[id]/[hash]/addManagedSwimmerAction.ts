@@ -53,7 +53,7 @@ export default async function addManagedSwimmerAction(_initialData: any, formDat
         }
 
     } catch (e) {
-        console.log(e);
+        console.error(e);
         return { swimmerError: true }
     }
 

@@ -32,7 +32,6 @@ export default async function SwimmerPage({ params }: { params: Promise<{ id: st
     const link = `https://${DOMAIN}/anmelden/${team?._id.toString() || "fehler"}`;
 
     const teamSwimmers = await plain(isTeamLead?await getSwimmersInTeam(team?._id || ""):[]);
-    console.log(teamSwimmers);
 
     return <div>
         <h1 className="mb-4">Ihre Daten {isTeamLead && "und Teammanagement"}</h1>
