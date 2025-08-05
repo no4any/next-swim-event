@@ -7,8 +7,11 @@ import Detail from "@/components/Detail.component";
 import AddManagedSwimmerForm from "./AddManagedSwimmerForm.component";
 import SmallButton from "@/components/input/SmallButton.component";
 import dateToString from "@/lib/dateToString.function";
+import { useRouter } from "next/navigation";
 
 export default function TeamManagement({ isLead, swimmers, teamId, id, hash }: { isLead: boolean, swimmers: Swimmer[], teamId: string, id: string, hash: string }) {
+    const router = useRouter();
+
     async function remove(swimmer: Swimmer) {
         if (confirm(`${swimmer.firstName} ${swimmer.lastName} wirklich löschen?`)) {
             await removeSwimmerAction(swimmer._id?.toString() || "", id, hash);
@@ -25,12 +28,12 @@ export default function TeamManagement({ isLead, swimmers, teamId, id, hash }: {
                 <div><Detail title="Name" value={`${swimmer.lastName}, ${swimmer.firstName}`} /></div>
                 <div><Detail title="Geburtstag" value={swimmer.birthday && dateToString(new Date(swimmer.birthday))} /></div>
                 <div><Detail title="Optionen" value={<>
-                    {id !== swimmer._id?.toString() && <SmallButton className="mr-4" color="RED" onClick={() => remove(swimmer)}>Entfernen</SmallButton>}
-                    <SmallButton color="GREEN">Details</SmallButton>
+                    {swimmer.isManaged && <SmallButton className="mr-4" color="RED" onClick={() => remove(swimmer)}>Entfernen</SmallButton>}
+                    {swimmer.isManaged && <SmallButton color="GREEN" onClick={()=>router.push(`/anmelden/${id}/${hash}/${swimmer._id?.toString() || ""}`)}>Details</SmallButton>}
                 </>} /></div>
             </Grid>
         </div>)}
-        <h2 className="my-4">Schwimmer hinzufügen</h2>
+        <h2 className="my-4">Schwimmer hinzufügen zu Team hinzufügen</h2>
         <AddManagedSwimmerForm id={id} hash={hash} teamId={teamId} />
     </>
 }
