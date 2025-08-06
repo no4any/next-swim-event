@@ -41,7 +41,7 @@ export default function RegisterSwimmerForm({swimmer, skipMail, onChange}: Regis
                 { name: "Männlich", value: "M" },
                 { name: "Weiblich", value: "W" }
             ]} /></div>
-            <div><InputDate disabled={status.pending} value={swimmer.birthday || "1900-01-01"} onChange={handleString} title="Geburtsdatum" name="birthday" /></div>
+            <div><InputDate disabled={status.pending} value={swimmer.birthday || ""} onChange={handleString} title="Geburtsdatum" name="birthday" /></div>
         </Grid >
         <div className="mt-4">
             <InputCheckbox disabled={status.pending} checked={swimmer.breakfast} onChange={handleChecked} name="breakfast">Ich möchte Frühstück (6€ bei Anmeldung zusätzlich zu bezahlen)</InputCheckbox>
