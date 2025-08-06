@@ -42,7 +42,7 @@ export default async function SwimmerPage({ params }: { params: Promise<{ id: st
         </>}
 
         <h2 className="my-4">Ihre Daten</h2>
-        <div className="my-4 italic">Sollten Sie änderungen wünschen, erwähnen Sie dies bei der Registrierung am Veranstaltungstag</div>
+        <div className="my-4 italic">Sollten Sie Änderungen wünschen, erwähnen Sie dies bei der Registrierung am Veranstaltungstag</div>
         <SwimmerDetails swimmer={swimmer} team={team || undefined} />
 
         <TeamManagement id={id} hash={hash} teamId={team?._id?.toString() || ""} isLead={isTeamLead} swimmers={teamSwimmers} />
