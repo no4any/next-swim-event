@@ -6,6 +6,9 @@ import { parseSwimmer } from "./addSwimmerAction";
 import { addSwimmer } from "@/lib/mongo/collections";
 import swimHash from "@/lib/swimHash.function";
 import getTeam from "@/lib/mongo/collections/teams/getTeam.function";
+import mail from "@/lib/mail/mail.function";
+import htmlForRegistrationMail from "@/lib/mail/htmlForRegistrationMail.function";
+import { DOMAIN } from "@/env";
 
 export default async function addSwimmerForTeamAction(initialState: {}, data: FormData): Promise<{ userError?: boolean, teamError?: boolean }> {
     let teamPath = "";
@@ -23,6 +26,14 @@ export default async function addSwimmerForTeamAction(initialState: {}, data: Fo
 
         const swimmerId = swimmerAddResult.insertedId instanceof Object ? swimmerAddResult.insertedId.toString() : swimmerAddResult.insertedId;
         redirectPath = `/anmelden/${swimmerId}/${await swimHash(swimmerId)}`;
+
+        try {
+            if (swimmer.email) {
+                await mail(swimmer.email, htmlForRegistrationMail(`http://${DOMAIN}${redirectPath}`, `${swimmer.firstName} ${swimmer.lastName}`));
+            }
+        } catch (e) {
+            console.error(e);
+        }
     } catch (e) {
         console.error(e);
         return { userError: true }

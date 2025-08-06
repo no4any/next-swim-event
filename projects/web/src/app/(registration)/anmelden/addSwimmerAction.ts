@@ -1,12 +1,14 @@
 "use server"
 
+import { DOMAIN } from "@/env";
+import htmlForRegistrationMail from "@/lib/mail/htmlForRegistrationMail.function";
+import mail from "@/lib/mail/mail.function";
 import { Swimmer, Team } from "@/lib/model";
 import { addSwimmer } from "@/lib/mongo/collections";
 import { deleteSwimmer } from "@/lib/mongo/collections/swimmers/deleteSwimmer.function";
 import setTeamForSwimmer from "@/lib/mongo/collections/swimmers/setTeamForSwimmer.function";
 import addTeam from "@/lib/mongo/collections/teams/addTeam.function";
 import swimHash from "@/lib/swimHash.function";
-import { ObjectId } from "mongodb";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -62,9 +64,16 @@ export default async function (initialState: {}, data: FormData): Promise<{ user
                 return { teamError: true }
             }
         }
-
         const swimmerId = swimmerAddResult.insertedId instanceof Object ? swimmerAddResult.insertedId.toString() : swimmerAddResult.insertedId;
         redirectPath = `/anmelden/${swimmerId}/${await swimHash(swimmerId)}`;
+        
+        try {
+            if(swimmer.email) {
+                await mail(swimmer.email, htmlForRegistrationMail(`http://${DOMAIN}${redirectPath}`, `${swimmer.firstName} ${swimmer.lastName}`));
+            }
+        } catch (e) {
+            console.error(e);
+        }
     } catch (e) {
         console.error(e);
         return { userError: true }
