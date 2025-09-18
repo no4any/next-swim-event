@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Anmeldung zum 24 Stunden Schwimmen 2025",
 };
 
-export default function RootLayout({
+export default function AdminRootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

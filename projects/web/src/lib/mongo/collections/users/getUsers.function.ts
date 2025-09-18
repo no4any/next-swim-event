@@ -1,13 +1,14 @@
-import { z } from "zod/v4";
-import { User } from "../../../model";
-import { WithMongoId } from "../../../model/WithMongoId.model";
-import { getUsersCollection } from "./getUsersCollection";
+import "server-only";
 
-export async function getUsers(): Promise<(WithMongoId & User)[]> {
+import z from "zod/v4";
+import { User, UserWithPermissions } from "../../../model";
+import { getUsersCollection } from "./getUsersCollection";
+import { cache } from "react";
+
+export async function getUsersRaw(): Promise<User[]> {
     const col = await getUsersCollection();
-    const users = z.array(z.object({
-        ...WithMongoId.shape,
-        ...User.shape
-    })).parse(await col.find().toArray());
+    const users = z.array(UserWithPermissions).parse(await col.find().toArray());
     return users;
 }
+
+export const getUsers = cache(getUsersRaw)

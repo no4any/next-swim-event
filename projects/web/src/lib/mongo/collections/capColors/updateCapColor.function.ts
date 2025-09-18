@@ -1,3 +1,5 @@
+import "server-only";
+
 import { ObjectId } from "mongodb";
 import { CapColor } from "../../../model/CapColor.model";
 import { WithMongoId } from "../../../model/WithMongoId.model";

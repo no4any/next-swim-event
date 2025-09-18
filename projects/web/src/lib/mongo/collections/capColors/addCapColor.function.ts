@@ -1,3 +1,5 @@
+import "server-only";
+
 import { CapColor } from "../../../model/CapColor.model";
 import { getCapColorsCollection } from "./getCapColorsCollection.function";
 

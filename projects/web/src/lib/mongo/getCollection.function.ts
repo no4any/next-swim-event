@@ -1,3 +1,5 @@
+import "server-only";
+
 import { Document } from "mongodb";
 import { getDb } from "./getDb.function";
 import { SwimCollection } from "./collections/SwimCollection.enum";

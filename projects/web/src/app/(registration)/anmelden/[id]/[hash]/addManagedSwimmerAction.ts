@@ -2,8 +2,8 @@
 
 import checkHash from "@/lib/checkHash.function";
 import { Swimmer } from "@/lib/model";
-import { addSwimmer } from "@/lib/mongo/collections";
-import getTeam from "@/lib/mongo/collections/teams/getTeam.function";
+import { addSwimmer } from "@/lib/mongo/collections/swimmers/addSwimmer.function";
+import { getTeam } from "@/lib/mongo/collections/teams/getTeam.function";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 

@@ -3,12 +3,12 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { parseSwimmer } from "./addSwimmerAction";
-import { addSwimmer } from "@/lib/mongo/collections";
 import swimHash from "@/lib/swimHash.function";
-import getTeam from "@/lib/mongo/collections/teams/getTeam.function";
 import mail from "@/lib/mail/mail.function";
 import htmlForRegistrationMail from "@/lib/mail/htmlForRegistrationMail.function";
 import { DOMAIN } from "@/env";
+import { getTeam } from "@/lib/mongo/collections/teams/getTeam.function";
+import { addSwimmer } from "@/lib/mongo/collections/swimmers/addSwimmer.function";
 
 export default async function addSwimmerForTeamAction(initialState: {}, data: FormData): Promise<{ userError?: boolean, teamError?: boolean }> {
     let teamPath = "";

@@ -1,3 +1,5 @@
+import "server-only";
+
 import { Team } from "@/lib/model";
 import { getTeamsCollection } from "./getTeamsCollection.function";
 

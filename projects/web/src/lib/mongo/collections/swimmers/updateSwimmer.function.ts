@@ -1,3 +1,5 @@
+import "server-only";
+
 import { ObjectId } from "mongodb";
 import { Swimmer } from "../../../model";
 import { getSwimmersCollection } from "./getSwimmersCollection.function";

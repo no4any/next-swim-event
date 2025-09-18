@@ -1,15 +1,22 @@
 import z from "zod/v4";
-import { Roll } from "./Roll.model";
 
 export const User = z.object({
     email: z.email(),
-    roll: Roll
 })
 
-export const UserWithPassword = z.object({
+export const UserWithPermissions = z.object({
     ...User.shape,
-    password: z.string()
+    isAdmin: z.boolean().nullish(),
+    isRegistration: z.boolean().nullish(),
+    isLogger: z.boolean().nullish()
+})
+
+export const UserWithPermissionsAndSecrets = z.object({
+    ...UserWithPermissions.shape,
+    password: z.string(),
+    resetToken: z.string().nullish()
 })
 
 export type User = z.infer<typeof User>
-export type UserWithPassword = z.infer<typeof UserWithPassword>
+export type UserWithPermissions = z.infer<typeof UserWithPermissions>
+export type UserWithPermissionsAndSecrets = z.infer<typeof UserWithPermissionsAndSecrets>

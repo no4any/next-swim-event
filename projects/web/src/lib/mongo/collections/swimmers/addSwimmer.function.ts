@@ -1,3 +1,5 @@
+import "server-only";
+
 import { Swimmer } from "../../../model";
 import { getSwimmersCollection } from "./getSwimmersCollection.function";
 

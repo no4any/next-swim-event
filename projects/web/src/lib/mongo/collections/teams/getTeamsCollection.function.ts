@@ -1,3 +1,5 @@
+import "server-only";
+
 import { Team } from "../../../model";
 import { getCollection } from "../../getCollection.function";
 import { SwimCollections } from "../SwimCollection.enum";

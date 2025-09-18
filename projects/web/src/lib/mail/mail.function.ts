@@ -1,3 +1,5 @@
+import "server-only";
+
 import nodemailer from "nodemailer";
 
 const SMTP_HOST = process.env.SMTP_HOST || "localhost";

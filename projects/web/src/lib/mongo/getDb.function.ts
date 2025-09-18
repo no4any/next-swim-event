@@ -1,3 +1,5 @@
+import "server-only";
+
 import { Db } from "mongodb";
 import { getMongoClient } from "./getMongoClient.function";
 

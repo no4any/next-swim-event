@@ -1,3 +1,5 @@
+import "server-only";
+
 export const SwimCollections = {
     CAP_COLORS: "cap_colors",
     SWIMMERS: "swimmers",

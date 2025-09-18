@@ -4,7 +4,7 @@ import { DOMAIN } from "@/env";
 import htmlForRegistrationMail from "@/lib/mail/htmlForRegistrationMail.function";
 import mail from "@/lib/mail/mail.function";
 import { Swimmer, Team } from "@/lib/model";
-import { addSwimmer } from "@/lib/mongo/collections";
+import { addSwimmer } from "@/lib/mongo/collections/swimmers/addSwimmer.function";
 import { deleteSwimmer } from "@/lib/mongo/collections/swimmers/deleteSwimmer.function";
 import setTeamForSwimmer from "@/lib/mongo/collections/swimmers/setTeamForSwimmer.function";
 import addTeam from "@/lib/mongo/collections/teams/addTeam.function";

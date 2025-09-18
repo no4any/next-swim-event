@@ -1,3 +1,5 @@
+import "server-only";
+
 import { CapColor } from "../../../model/CapColor.model";
 import { getCollection } from "../../getCollection.function";
 import { SwimCollections } from "../SwimCollection.enum";
