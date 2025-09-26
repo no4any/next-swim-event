@@ -1,9 +1,8 @@
 import z from "zod/v4";
-import { Roll } from "./Roll.model";
 
 export const User = z.object({
     email: z.email(),
-    roll: Roll
+    isAdmin: z.boolean().nullish()
 })
 
 export const UserWithPassword = z.object({

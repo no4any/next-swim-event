@@ -1,9 +1,5 @@
+import { CONNECTION_STRING, MONGO_PASSWORD, MONGO_USERNAME } from "@/env";
 import { MongoClient } from "mongodb";
-
-const CONNECTION_STRING = process.env.CONNECTION_STRING || 'mongodb://localhost:27017';
-
-const MONGO_USERNAME = process.env.MONGO_INITDB_ROOT_USERNAME || 'root';
-const MONGO_PASSWORD = process.env.MONGO_INITDB_ROOT_PASSWORD || 'root';
 
 var mongo: MongoClient | undefined;
 

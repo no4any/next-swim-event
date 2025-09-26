@@ -1,6 +1,5 @@
+import { SALT } from "@/env";
 import { createHash } from "node:crypto";
-
-const SALT = process.env.SALT || "SALT123";
 
 export default async function swimHash(msg:string) {
     const saltedMsg = `${SALT}-${msg}`;
