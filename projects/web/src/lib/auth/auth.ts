@@ -18,7 +18,7 @@ async function getTokenRaw() {
 
 const getToken = cache(getTokenRaw);
 
-export async function auth() {
+export async function authRaw() {
     try {
         const token = await getToken() || "";
         const tokenUser = await verifyUser(token);
@@ -29,6 +29,8 @@ export async function auth() {
         return null;
     }
 }
+
+export const auth = cache(authRaw);
 
 export async function login(username: string, password: string) {
     const cookieStore = await cookies();
@@ -59,4 +61,9 @@ export async function login(username: string, password: string) {
     }
 
     return null;
+}
+
+export async function logout() {
+    const cookieStore = await cookies();
+    cookieStore.delete(TOKEN_COOKIE_NAME);
 }

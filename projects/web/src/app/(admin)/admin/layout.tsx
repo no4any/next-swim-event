@@ -2,6 +2,7 @@ import { auth } from "@/lib/auth/auth";
 import "./admin.css";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
+import AdminMenu from "./AdminMenu.component";
 
 export const metadata: Metadata = {
     title: "Administration",
@@ -25,7 +26,14 @@ export default async function LoginLayout({
             <body
                 className={`antialiased`}
             >
-                {children}
+                <div className="flex flwx-row">
+                    <div className="basis-1/8">
+                        <AdminMenu />
+                    </div>
+                    <main className="basis-7/8 overflow-scroll">
+                        {children}
+                    </main>
+                </div>
             </body>
         </html>
     );

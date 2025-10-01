@@ -6,6 +6,8 @@ services:
       - 27017:27017
     env_file:
       - .env
+    volumes:
+      - ./_data/mongo:/data/db
   mongo-express:
     image: mongo-express
     restart: always
