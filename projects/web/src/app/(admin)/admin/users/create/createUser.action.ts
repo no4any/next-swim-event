@@ -10,7 +10,7 @@ export default async function createUserAction(email: string, password: string, 
 
     if (user?.isAdmin) {
         try {
-            const result = await addUser({ email, password: await swimHash(password), isAdmin });
+            const result = await addUser({ email: email.toLowerCase(), password: await swimHash(password), isAdmin });
         } catch(e) {
             console.warn(e);
             return "Fehler beim Anlegen des Benutzers";
