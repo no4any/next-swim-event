@@ -27,10 +27,10 @@ export default async function LoginLayout({
                 className={`antialiased`}
             >
                 <div className="flex flwx-row">
-                    <div className="basis-1/8">
+                    <div className="basis-1/8 p-3">
                         <AdminMenu />
                     </div>
-                    <main className="basis-7/8 overflow-scroll">
+                    <main className="basis-7/8 p-3 overflow-scroll">
                         {children}
                     </main>
                 </div>
