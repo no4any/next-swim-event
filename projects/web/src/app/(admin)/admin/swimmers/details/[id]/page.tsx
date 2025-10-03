@@ -24,6 +24,7 @@ export default async function SwimmerDetailsPage({ params }: { params: Promise<{
         <div>
             {!swimmer.isRegistered && <Link href={`/admin/swimmers/details/${swimmer._id}/register`}>Anmelden</Link>}
             {swimmer.isRegistered && <Link href={`/admin/swimmers/details/${swimmer._id}/update/cap`}>Badekappe ändern</Link>}
+            {swimmer.isRegistered && <Link href={`/admin/swimmers/details/${swimmer._id}/update/reg`}>Registriernummer ändern</Link>}
             <Link href={`/admin/swimmers/details/${swimmer._id}/update`}>Bearbeiten</Link>
             <CloseActionButton id={swimmer._id.toString()} value={swimmer.isClosed} />
         </div>
