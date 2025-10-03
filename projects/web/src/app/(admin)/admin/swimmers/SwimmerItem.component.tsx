@@ -6,9 +6,10 @@ import Link from "next/link";
 
 export default async function SwimmerItem({ swimmer }: { swimmer: Swimmer & WithMongoId }) {
     return <Link href={`/admin/swimmers/details/${swimmer._id}`}>
-        <div className="grid grid-cols-7 hover:bg-gray-300">
+        <div className="grid grid-cols-8 hover:bg-gray-300">
             <div className={`col-span-2 ${swimmer.isManaged && "italic"} ${swimmer.isRegistered && "font-bold"}`}>{swimmer.lastName}, {swimmer.firstName}</div>
             <div>{swimmer.capColor && <Cap capColor={swimmer.capColor} capNr={swimmer.capNr || 0}/>}</div>
+            <div>{swimmer.regNr}</div>
             <div>{swimmer.gender !== "0" && swimmer.gender}</div>
             <div>{swimmer.birthday && (getAge(new Date(swimmer.birthday)) + " Jahre")}</div>
             <div>{swimmer.city}</div>
