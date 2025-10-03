@@ -15,6 +15,6 @@ export default function SwimmerDetails({ swimmer, team }: { swimmer: Swimmer, te
         <Detail title="Teilnahme an Distanzwertung" value={swimmer.distanceRating ? "Ja" : "Nein"} />
         <Detail title="Namentliche Nennung" value={swimmer.allowsPublishingName ? "Ja" : "Nein"} />
         <Detail title="Newsletter" value={swimmer.newsletter ? "Ja" : "Nein"} />
-        <Detail title="Team" value={team?.name ? team?.name : <i>Kein Team</i>} />
+        {team && <Detail title="Team" value={team?.name ? team?.name : <i>Kein Team</i>} />}
     </Grid>
 }

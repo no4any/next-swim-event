@@ -8,6 +8,9 @@ import CloseActionButton from "./CloseActionButton.component";
 import { getCapColor } from "@/lib/mongo/collections";
 import canChangeTeam from "./update/team/canChangeTeam.function";
 import swimHash from "@/lib/swimHash.function";
+import getTeam from "@/lib/mongo/collections/teams/getTeam.function";
+import { getLapsForSwimmerId } from "@/lib/mongo/collections/laps/getLapsForSwimmerId.function";
+import youthMedal from "@/lib/youthMedal";
 
 export const revalidate = 0
 export const dynamic = 'force-dynamic';
@@ -21,7 +24,13 @@ export default async function SwimmerDetailsPage({ params }: { params: Promise<{
 
     if (swimmer === null) notFound();
 
+    const team = swimmer.teamId ? await getTeam(swimmer.teamId) : null;
+
     const canChange = await canChangeTeam(id);
+
+    const laps = await getLapsForSwimmerId(id);
+
+    const medal = swimmer.birthday?youthMedal(laps*50, new Date(swimmer.birthday)):null;
 
     return <div>
         <h1 className="mb-3">{swimmer.lastName}, {swimmer.firstName}</h1>
@@ -49,15 +58,16 @@ export default async function SwimmerDetailsPage({ params }: { params: Promise<{
             <Details titel="Managed">{swimmer.isManaged && manager !== null ? <Link href={`/admin/swimmers/details/${manager._id}`}>{manager.firstName}, {manager.lastName}</Link> : "Nein"}</Details>
             <Details titel="Angemeldet">{swimmer.isRegistered ? "Ja" : "Nein"}</Details>
             <Details titel="Newsletter">{swimmer.newsletter ? "Ja" : "Nein"}</Details>
-            <Details titel="Team">{swimmer.teamId}</Details>
+            <Details titel="Team">{team && <Link href={`/admin/teams/${team._id.toString()}`}>{team.name}</Link>}</Details>
             <Details titel="Geschlossen">{swimmer.isClosed ? "Ja" : "Nein"}</Details>
+            <Details titel="Bahnen">{laps} {medal && <span>({medal})</span>}</Details>
         </Grid>
     </div>
 }
 
 function Details({ titel, children }: { titel: string, children?: string | ReactNode }) {
     return <div>
-        <div>{titel}</div>
+        <div className="font-bold">{titel}</div>
         <div>{children}</div>
     </div>
 }

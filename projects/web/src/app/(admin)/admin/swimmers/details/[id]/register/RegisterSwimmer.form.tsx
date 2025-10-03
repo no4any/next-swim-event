@@ -26,7 +26,7 @@ export default function RegisterSwimmerForm({ swimmer, capColors }: { swimmer: S
                 capColors.map(cap => ({ name: cap.name, value: cap._id.toString() }))
             } value={capColorId} onChange={e => setCapColorId(e.target.value)} />
             <InputText title="Kappennummer" value={capNr || 0} onChange={e => setCapNr(parseInt(e.target.value))} />
-            <InputText title="Kappennummer" value={regNr || 0} onChange={e => setRegNr(parseInt(e.target.value))} />
+            <InputText title="Registriernummer" value={regNr || 0} onChange={e => setRegNr(parseInt(e.target.value))} />
         </Grid>
         <SubmitButton>Anmelden</SubmitButton>
     </form>
