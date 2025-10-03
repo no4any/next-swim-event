@@ -12,7 +12,7 @@ export default async function deleteColorAction(id: string) {
 
     const swimmersCol = await getSwimmersCollection();
 
-    const swimmersWithColor = await swimmersCol.find({ _id: id }).toArray();
+    const swimmersWithColor = await swimmersCol.find({ capColor: id }).toArray();
 
     if (swimmersWithColor.length > 0) return "Farbe in verwendung. Löschen nicht möglich."
 

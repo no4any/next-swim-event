@@ -18,8 +18,8 @@ export const Swimmer = z.object({
     breakfast: z.boolean(),
     allowsPublishingName: z.boolean(),
     capColor: z.string().min(1).optional(),
-    capNr: z.int().min(1).max(100).optional(),
-    regNr: z.int().min(1).max(999).optional(),
+    capNr: z.int().optional(),
+    regNr: z.int().optional(),
     newsletter: z.boolean().optional(),
 })
 

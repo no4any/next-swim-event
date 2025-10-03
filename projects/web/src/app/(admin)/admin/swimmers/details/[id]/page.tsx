@@ -5,6 +5,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ReactNode } from "react";
 import CloseActionButton from "./CloseActionButton.component";
+import { getCapColor } from "@/lib/mongo/collections";
 
 export const revalidate = 0
 export const dynamic = 'force-dynamic';
@@ -21,12 +22,14 @@ export default async function SwimmerDetailsPage({ params }: { params: Promise<{
     return <div>
         <h1 className="mb-3">{swimmer.lastName}, {swimmer.firstName}</h1>
         <div>
+            {!swimmer.isRegistered && <Link href={`/admin/swimmers/details/${swimmer._id}/register`}>Anmelden</Link>}
             <Link href={`/admin/swimmers/details/${swimmer._id}/update`}>Bearbeiten</Link>
             <CloseActionButton id={swimmer._id.toString()} value={swimmer.isClosed} />
         </div>
         <Grid>
-            <Details titel="Nummer">{swimmer.capColor && swimmer.capColor}</Details>
-            <Details titel="Farbe">{swimmer.capNr && swimmer.capNr}</Details>
+            <Details titel="Kappenfarbe">{swimmer.capColor && (await getCapColor(swimmer.capColor))?.name}</Details>
+            <Details titel="Kappennummer">{swimmer.capNr && swimmer.capNr}</Details>
+            <Details titel="Bandnummer">{`${swimmer.regNr}`}</Details>
             <Details titel="Geburtstag">{swimmer.birthday} {swimmer.birthday && ("(" + getAge(new Date(swimmer.birthday)) + " Jahre)")}</Details>
             <Details titel="Daten veröffentlichen">{swimmer.allowsPublishingName ? "Ja" : "Nein"}</Details>
             <Details titel="Frühstück">{swimmer.breakfast ? "Ja" : "Nein"}</Details>
@@ -38,7 +41,6 @@ export default async function SwimmerDetailsPage({ params }: { params: Promise<{
             <Details titel="Managed">{swimmer.isManaged && manager !== null ? <Link href={`/admin/swimmers/details/${manager._id}`}>{manager.firstName}, {manager.lastName}</Link> : "Nein"}</Details>
             <Details titel="Angemeldet">{swimmer.isRegistered ? "Ja" : "Nein"}</Details>
             <Details titel="Newsletter">{swimmer.newsletter ? "Ja" : "Nein"}</Details>
-            <Details titel="Bandnummer">{`${swimmer.regNr}`}</Details>
             <Details titel="Team">{swimmer.teamId}</Details>
             <Details titel="Geschlossen">{swimmer.isClosed ? "Ja" : "Nein"}</Details>
         </Grid>

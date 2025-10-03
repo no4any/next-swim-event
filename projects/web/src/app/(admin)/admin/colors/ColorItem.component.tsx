@@ -10,7 +10,7 @@ export default function ColorItem({ color }: { color: WithMongoId & CapColor }) 
         <div style={{ color: color.color as string || "#000" }} className={`w-1/2`}>{color.name}</div>
         <div className="w-1/2 text-right">
             <span className="cursor-pointer mr-3" onClick={() => {
-                if (confirm(`${color.name} wirklich löschen?`)) deleteColorAction(color._id.toString())
+                if (confirm(`${color.name} wirklich löschen?`)) deleteColorAction(color._id.toString()).then(alert)
             }}>Löschen</span>
             <Link href={`/admin/colors/update/${color._id}`}>Ändern</Link>
         </div>

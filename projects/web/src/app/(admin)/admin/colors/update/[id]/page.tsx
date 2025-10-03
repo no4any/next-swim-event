@@ -1,10 +1,10 @@
-"use server"
-
 import { auth } from "@/lib/auth/auth";
-// import { getCapColor } from "@/lib/mongo/collections";
 import { notFound } from "next/navigation";
 import ChangeColorForm from "./ChangeColor.form";
 import { getCapColor } from "@/lib/mongo/collections";
+
+export const revalidate = 0;
+export const dynamic = 'force-dynamic';
 
 export default async function ChangeCapColorPage({ params }: { params: Promise<{ id: string }> }) {
     const user = await auth();
