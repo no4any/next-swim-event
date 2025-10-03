@@ -28,7 +28,7 @@ export default function TeamManagement({ isLead, swimmers, teamId, id, hash }: {
                 <div><Detail title="Name" value={`${swimmer.lastName}, ${swimmer.firstName}`} /></div>
                 <div><Detail title="Geburtstag" value={swimmer.birthday && dateToString(new Date(swimmer.birthday))} /></div>
                 <div><Detail title="Optionen" value={<>
-                    {swimmer.isManaged && <SmallButton className="mr-4" color="RED" onClick={() => remove(swimmer)}>Entfernen</SmallButton>}
+                    {swimmer.isManaged && !swimmer.isRegistered && <SmallButton className="mr-4" color="RED" onClick={() => remove(swimmer)}>Entfernen</SmallButton>}
                     {swimmer.isManaged && <SmallButton color="GREEN" onClick={()=>router.push(`/anmelden/${id}/${hash}/${swimmer._id?.toString() || ""}`)}>Details</SmallButton>}
                 </>} /></div>
             </Grid>

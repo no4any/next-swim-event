@@ -10,7 +10,7 @@ export default async function removeSwimmerAction(swimmerId: string, id: string,
     if (await checkHash(id, hash)) {
         const swimmer = await getSwimmer(swimmerId);
 
-        if(swimmer?.isManaged) {   
+        if(swimmer?.isManaged && !swimmer.isRegistered) {   
             if (swimmer?.managerId === id) {
                 await deleteSwimmer(swimmerId);
             }
