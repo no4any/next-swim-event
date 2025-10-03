@@ -10,7 +10,8 @@ export default async function AdminPage() {
         <h1>AdminPage</h1>
         <div className="grid grid-cols-3">
             <div>
-                <h2>{breakfastCount} Stück</h2>
+                <h2>Frühstücke</h2>
+                <h3>{breakfastCount} Stück</h3>
             </div>
         </div>
     </div>
