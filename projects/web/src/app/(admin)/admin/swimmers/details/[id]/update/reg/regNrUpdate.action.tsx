@@ -8,7 +8,7 @@ import { getSwimmerByRegNr } from "@/lib/mongo/collections/swimmers/getSwimmerBy
 import { ObjectId } from "mongodb";
 import { redirect } from "next/navigation";
 
-export default async function RegNrUpdateAction(swimmerId: string, regNr: number) {
+export default async function regNrUpdateAction(swimmerId: string, regNr: number) {
     const user = await auth();
     if (user === null) return "Fehlende Berechtigungen"
 
