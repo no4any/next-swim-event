@@ -1,4 +1,6 @@
 import { getCapColors, getUsers } from "@/lib/mongo/collections";
+import { getCountersCollection } from "@/lib/mongo/collections/counters/getCountersCollection.function";
+import { getLaps } from "@/lib/mongo/collections/laps/getLaps.function";
 import { getSwimmers } from "@/lib/mongo/collections/swimmers/getSwimmers.function";
 import getTeams from "@/lib/mongo/collections/teams/getTeams.function";
 import fs from "fs";
@@ -10,6 +12,8 @@ const TEAMS_FILE = "/data/teams.json";
 const SWIMMERS_FILE = "/data/swimmers.json";
 const CAP_COLORS_FILE = "/data/cap_colors.json";
 const USERS_FILE = "/data/users.json";
+const COUNTERS_FILE = "/data/counters.json";
+const LAPS_FILE = "/data/laps.json"
 
 export default async function BackupPage() {
     const swimmers = await getSwimmers();
@@ -25,6 +29,12 @@ export default async function BackupPage() {
 
     const usersJSON = JSON.stringify(await getUsers());
     fs.writeFileSync(USERS_FILE, usersJSON);
+
+    const countersJSON = JSON.stringify(await (await getCountersCollection()).find({}).toArray());
+    fs.writeFileSync(COUNTERS_FILE, countersJSON);
+
+    const lapsJSON = JSON.stringify(await getLaps());
+    fs.writeFileSync(LAPS_FILE, lapsJSON);
 
     return <div>Toll!</div>
 }
