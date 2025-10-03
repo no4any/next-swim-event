@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { ReactNode } from "react";
 import CloseActionButton from "./CloseActionButton.component";
 import { getCapColor } from "@/lib/mongo/collections";
+import canChangeTeam from "./update/team/canChangeTeam.function";
 
 export const revalidate = 0
 export const dynamic = 'force-dynamic';
@@ -19,12 +20,15 @@ export default async function SwimmerDetailsPage({ params }: { params: Promise<{
 
     if (swimmer === null) notFound();
 
+    const canChange = await canChangeTeam(id);
+
     return <div>
         <h1 className="mb-3">{swimmer.lastName}, {swimmer.firstName}</h1>
         <div className="mb-3">
             {!swimmer.isRegistered && <Link className="p-2 mt-2 mr-2 bg-dlrg-blue rounded w-full font-bold cursor-pointer" href={`/admin/swimmers/details/${swimmer._id}/register`}>Anmelden</Link>}
             {swimmer.isRegistered && <Link className="p-2 mt-2 mr-2 bg-dlrg-blue rounded w-full font-bold cursor-pointer"href={`/admin/swimmers/details/${swimmer._id}/update/cap`}>Badekappe ändern</Link>}
             {swimmer.isRegistered && <Link className="p-2 mt-2 mr-2 bg-dlrg-blue rounded w-full font-bold cursor-pointer" href={`/admin/swimmers/details/${swimmer._id}/update/reg`}>Registriernummer ändern</Link>}
+            {canChange ? <Link className="p-2 mt-2 mr-2 bg-dlrg-yellow rounded w-full font-bold cursor-pointer" href={`/admin/swimmers/details/${swimmer._id}/update/team`}>Team ändern</Link> : <></>}
             <Link className="p-2 mt-2 mr-2 bg-dlrg-blue rounded w-full font-bold cursor-pointer" href={`/admin/swimmers/details/${swimmer._id}/update`}>Bearbeiten</Link>
             <CloseActionButton id={swimmer._id.toString()} value={swimmer.isClosed} />
         </div>
