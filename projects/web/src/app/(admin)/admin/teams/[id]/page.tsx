@@ -20,8 +20,8 @@ export default async function TeamPage({ params }: { params: Promise<{ id: strin
 
     return <div>
         <h1 className="mb-3">Team: {team.name}</h1>
-        <div>
-            <Link href={`/admin/teams/${id}/edit`}>Bearbeiten</Link>
+        <div className="mb-3">
+            <Link className="p-2 mt-2 mr-2 bg-dlrg-blue rounded w-full font-bold cursor-pointer" href={`/admin/teams/${id}/edit`}>Bearbeiten</Link>
         </div>
         <div>
             {swimmers.map(swimmer => <SwimmerItem key={swimmer._id?.toString() || ""} swimmer={swimmer} />)}

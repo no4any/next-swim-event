@@ -21,11 +21,11 @@ export default async function SwimmerDetailsPage({ params }: { params: Promise<{
 
     return <div>
         <h1 className="mb-3">{swimmer.lastName}, {swimmer.firstName}</h1>
-        <div>
-            {!swimmer.isRegistered && <Link href={`/admin/swimmers/details/${swimmer._id}/register`}>Anmelden</Link>}
-            {swimmer.isRegistered && <Link href={`/admin/swimmers/details/${swimmer._id}/update/cap`}>Badekappe ändern</Link>}
-            {swimmer.isRegistered && <Link href={`/admin/swimmers/details/${swimmer._id}/update/reg`}>Registriernummer ändern</Link>}
-            <Link href={`/admin/swimmers/details/${swimmer._id}/update`}>Bearbeiten</Link>
+        <div className="mb-3">
+            {!swimmer.isRegistered && <Link className="p-2 mt-2 mr-2 bg-dlrg-blue rounded w-full font-bold cursor-pointer" href={`/admin/swimmers/details/${swimmer._id}/register`}>Anmelden</Link>}
+            {swimmer.isRegistered && <Link className="p-2 mt-2 mr-2 bg-dlrg-blue rounded w-full font-bold cursor-pointer"href={`/admin/swimmers/details/${swimmer._id}/update/cap`}>Badekappe ändern</Link>}
+            {swimmer.isRegistered && <Link className="p-2 mt-2 mr-2 bg-dlrg-blue rounded w-full font-bold cursor-pointer" href={`/admin/swimmers/details/${swimmer._id}/update/reg`}>Registriernummer ändern</Link>}
+            <Link className="p-2 mt-2 mr-2 bg-dlrg-blue rounded w-full font-bold cursor-pointer" href={`/admin/swimmers/details/${swimmer._id}/update`}>Bearbeiten</Link>
             <CloseActionButton id={swimmer._id.toString()} value={swimmer.isClosed} />
         </div>
         <Grid>
