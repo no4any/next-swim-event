@@ -11,7 +11,10 @@ export async function addColorAction(color: CapColor) {
     if(user === null) return "Fehlende Berechtigungen";
 
     try {
-        const res = await addCap(color);
+        const res = await addCap({
+            name: color.name.trim(),
+            color: color.color
+        });
     } catch(e) {
         return "Fehler beim Hinzufügen der Farbe (wahrscheinlich existiert sie bereits)";
     }

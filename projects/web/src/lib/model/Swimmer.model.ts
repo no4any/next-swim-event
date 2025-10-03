@@ -17,7 +17,7 @@ export const Swimmer = z.object({
     teamId: z.string().min(2).optional(),
     breakfast: z.boolean(),
     allowsPublishingName: z.boolean(),
-    capColor: z.string().min(2).optional(),
+    capColor: z.string().min(1).optional(),
     capNr: z.int().min(1).max(100).optional(),
     regNr: z.int().min(1).max(999).optional(),
     newsletter: z.boolean().optional(),

@@ -10,7 +10,10 @@ export default async function changeColorAction(id: string, capColor: CapColor) 
 
     if(user === null) return "Fehlende Berechtigungen";
 
-    const result = await  updateCapColor({_id: id, ...capColor});
+    const result = await  updateCapColor({_id: id, 
+        name: capColor.name.trim(),
+        color: capColor.color
+    });
 
     if(result.modifiedCount > 0 ) redirect("/admin/colors");
 
