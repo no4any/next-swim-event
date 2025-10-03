@@ -4,6 +4,7 @@ import InputText from "@/components/backend/input/InputText.component";
 import SubmitButton from "@/components/backend/input/SubmitButton.component";
 import { useState } from "react";
 import LoginAction from "./login.action";
+import InputPassword from "@/components/backend/input/InputPassword.component";
 
 export default function LoginForm() {
     const [email, setEmail] = useState("");
@@ -14,7 +15,7 @@ export default function LoginForm() {
         LoginAction(email, password).catch(()=>alert("Fehler beim Anmelden"));
     }}>
         <InputText title="E-Mail" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <InputText title="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <InputPassword title="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         <SubmitButton>Anmelden</SubmitButton>
     </form>
 }
