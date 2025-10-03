@@ -17,7 +17,7 @@ export default async function ChangePasswordAction(oldPassword: string, newPassw
         if (!dbUser) return "Altes Passwort ist falsch";
         const result = await updateUserPassword(user.email, newPassword);
         if(result.modifiedCount > 1) return "Passwort konnte nicht geändert werden";
-        redirect("/admin/user");
+        redirect("/admin/me");
     }
 
     return "Passwörter stimmen nicht überein";

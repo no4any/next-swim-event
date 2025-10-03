@@ -1,93 +1,23 @@
-export default function AdminPage() {
+import { getSwimmersCollection } from "@/lib/mongo/collections";
+
+export const revalidate = 0
+export const dynamic = 'force-dynamic';
+
+export default async function AdminPage() {
+    const breakfastCount = await getBreakfasts();
+
     return <div>
         <h1>AdminPage</h1>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
-        <div>lsadkjfölasjfdlöasdjflasö lasdf löaskdf jlösajd flöasjd flösja dflösafldj sa dflö asfd</div>
+        <div className="grid grid-cols-3">
+            <div>
+                <h2>{breakfastCount} Stück</h2>
+            </div>
+        </div>
     </div>
+}
+
+async function getBreakfasts() {
+    const col = await getSwimmersCollection();
+
+    return (await col.find({breakfast: true, isRegistered: true}).toArray()).length
 }
