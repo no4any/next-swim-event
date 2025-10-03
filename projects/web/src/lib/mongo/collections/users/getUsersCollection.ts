@@ -1,3 +1,4 @@
+import { WithMongoId } from "@/lib/model/WithMongoId.model";
 import { UserWithPassword } from "../../../model";
 import { getCollection } from "../../getCollection.function";
 import { SwimCollections } from "../SwimCollection.enum";

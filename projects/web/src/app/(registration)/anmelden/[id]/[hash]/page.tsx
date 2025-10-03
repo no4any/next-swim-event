@@ -1,4 +1,3 @@
-import { DOMAIN } from "@/env";
 import { getSwimmer } from "@/lib/mongo/collections/swimmers/getSwimmer.function";
 import { getSwimmersInTeam } from "@/lib/mongo/collections/swimmers/getSwimmersInTeam.function";
 import getTeam from "@/lib/mongo/collections/teams/getTeam.function";
@@ -7,7 +6,7 @@ import checkHash from "@/lib/checkHash.function";
 import TeamManagement from "./TeamManagement.component";
 import plain from "@/lib/plain.function";
 import SwimmerDetails from "@/components/swimmer/SwimmerDetails.component";
-
+import { DOMAIN } from "@/env";
 
 export default async function SwimmerPage({ params }: { params: Promise<{ id: string, hash: string }> }) {
     const { id, hash } = await params;

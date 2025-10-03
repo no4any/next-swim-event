@@ -1,3 +1,4 @@
+import { getCapColors, getUsers } from "@/lib/mongo/collections";
 import { getSwimmers } from "@/lib/mongo/collections/swimmers/getSwimmers.function";
 import getTeams from "@/lib/mongo/collections/teams/getTeams.function";
 import fs from "fs";
@@ -7,6 +8,8 @@ export const dynamic = 'force-dynamic';
 
 const TEAMS_FILE = "/data/teams.json";
 const SWIMMERS_FILE = "/data/swimmers.json";
+const CAP_COLORS_FILE = "/data/cap_colors.json";
+const USERS_FILE = "/data/users.json";
 
 export default async function BackupPage() {
     const swimmers = await getSwimmers();
@@ -16,6 +19,12 @@ export default async function BackupPage() {
     const teams = await getTeams();
     const teamsJson = JSON.stringify(teams);
     fs.writeFileSync(TEAMS_FILE, teamsJson);
+
+    const capColorsJSON = JSON.stringify(await getCapColors());
+    fs.writeFileSync(CAP_COLORS_FILE, capColorsJSON);
+
+    const usersJSON = JSON.stringify(await getUsers());
+    fs.writeFileSync(USERS_FILE, usersJSON);
 
     return <div>Toll!</div>
 }
