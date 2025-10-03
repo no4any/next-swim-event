@@ -7,6 +7,7 @@ import { ReactNode } from "react";
 import CloseActionButton from "./CloseActionButton.component";
 import { getCapColor } from "@/lib/mongo/collections";
 import canChangeTeam from "./update/team/canChangeTeam.function";
+import swimHash from "@/lib/swimHash.function";
 
 export const revalidate = 0
 export const dynamic = 'force-dynamic';
@@ -30,6 +31,7 @@ export default async function SwimmerDetailsPage({ params }: { params: Promise<{
             {swimmer.isRegistered && <Link className="p-2 mt-2 mr-2 bg-dlrg-blue rounded w-full font-bold cursor-pointer" href={`/admin/swimmers/details/${swimmer._id}/update/reg`}>Registriernummer ändern</Link>}
             {canChange ? <Link className="p-2 mt-2 mr-2 bg-dlrg-yellow rounded w-full font-bold cursor-pointer" href={`/admin/swimmers/details/${swimmer._id}/update/team`}>Team ändern</Link> : <></>}
             <Link className="p-2 mt-2 mr-2 bg-dlrg-blue rounded w-full font-bold cursor-pointer" href={`/admin/swimmers/details/${swimmer._id}/update`}>Bearbeiten</Link>
+            {!swimmer.isManaged && <Link className="p-2 mt-2 mr-2 bg-dlrg-green rounded w-full font-bold cursor-pointer" href={`/anmelden/${id}/${await swimHash(id)}`}>Seite</Link>}
             <CloseActionButton id={swimmer._id.toString()} value={swimmer.isClosed} />
         </div>
         <Grid>
