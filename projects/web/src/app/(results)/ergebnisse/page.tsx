@@ -3,7 +3,8 @@ import { getLapsForTeamId } from "@/lib/mongo/collections/laps/getLapsForTeamId.
 import { getSwimmers } from "@/lib/mongo/collections/swimmers/getSwimmers.function"
 import getTeams from "@/lib/mongo/collections/teams/getTeams.function";
 
-
+export const revalidate = 0
+export const dynamic = 'force-dynamic';
 
 export default async function ResultsPage() {
     const results = await fetchResults();
