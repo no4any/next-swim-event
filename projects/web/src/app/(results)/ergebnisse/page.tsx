@@ -9,12 +9,12 @@ export const dynamic = 'force-dynamic';
 export default async function ResultsPage() {
     const results = await fetchResults();
 
-    const now = new Date();
-    const printNow = `${now.getDate()+1}.${now.getMonth()}.${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}`
+    //const now = new Date();
+    //const printNow = `${now.getDate()+1}.${now.getMonth()}.${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}`
+    //<div className="mb-3">Letztes Update: {printNow}</div>
 
     return <div>
         <h1 className="mb-3">Ergebnisse</h1>
-        <div className="mb-3">Letztes Update: {printNow}</div>
         <h2>Einzelwertung</h2>
         {results.swimmers.map((s, i) => <div className="grid grid-cols-4">
             <div>{i + 1}.</div>
