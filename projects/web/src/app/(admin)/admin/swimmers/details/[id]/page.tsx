@@ -11,6 +11,8 @@ import swimHash from "@/lib/swimHash.function";
 import getTeam from "@/lib/mongo/collections/teams/getTeam.function";
 import { getLapsForSwimmerId } from "@/lib/mongo/collections/laps/getLapsForSwimmerId.function";
 import youthMedal from "@/lib/youthMedal";
+import { getLapsCollection } from "@/lib/mongo/collections/laps/getLapsCollection.function";
+import LapEntry from "../../../laps/lapEntry.component";
 
 export const revalidate = 0
 export const dynamic = 'force-dynamic';
@@ -30,13 +32,15 @@ export default async function SwimmerDetailsPage({ params }: { params: Promise<{
 
     const laps = await getLapsForSwimmerId(id);
 
-    const medal = swimmer.birthday?youthMedal(laps*50, new Date(swimmer.birthday)):null;
+    const medal = swimmer.birthday ? youthMedal(laps * 50, new Date(swimmer.birthday)) : null;
+
+    const lapEntries = await getLapEntiersForSwimmer(id);
 
     return <div>
         <h1 className="mb-3">{swimmer.lastName}, {swimmer.firstName}</h1>
         <div className="mb-3">
             {!swimmer.isRegistered && <Link className="p-2 mt-2 mr-2 bg-dlrg-blue rounded w-full font-bold cursor-pointer" href={`/admin/swimmers/details/${swimmer._id}/register`}>Anmelden</Link>}
-            {swimmer.isRegistered && <Link className="p-2 mt-2 mr-2 bg-dlrg-blue rounded w-full font-bold cursor-pointer"href={`/admin/swimmers/details/${swimmer._id}/update/cap`}>Badekappe ändern</Link>}
+            {swimmer.isRegistered && <Link className="p-2 mt-2 mr-2 bg-dlrg-blue rounded w-full font-bold cursor-pointer" href={`/admin/swimmers/details/${swimmer._id}/update/cap`}>Badekappe ändern</Link>}
             {swimmer.isRegistered && <Link className="p-2 mt-2 mr-2 bg-dlrg-blue rounded w-full font-bold cursor-pointer" href={`/admin/swimmers/details/${swimmer._id}/update/reg`}>Registriernummer ändern</Link>}
             {canChange ? <Link className="p-2 mt-2 mr-2 bg-dlrg-yellow rounded w-full font-bold cursor-pointer" href={`/admin/swimmers/details/${swimmer._id}/update/team`}>Team ändern</Link> : <></>}
             <Link className="p-2 mt-2 mr-2 bg-dlrg-blue rounded w-full font-bold cursor-pointer" href={`/admin/swimmers/details/${swimmer._id}/update`}>Bearbeiten</Link>
@@ -62,6 +66,8 @@ export default async function SwimmerDetailsPage({ params }: { params: Promise<{
             <Details titel="Geschlossen">{swimmer.isClosed ? "Ja" : "Nein"}</Details>
             <Details titel="Bahnen">{laps} {medal && <Link href={`/print/youth/${id}`}>({medal})</Link>}</Details>
         </Grid>
+        <h2>Erfasste Belege</h2>
+        {lapEntries.map(lap => <LapEntry lap={lap} />)}
     </div>
 }
 
@@ -70,4 +76,10 @@ function Details({ titel, children }: { titel: string, children?: string | React
         <div className="font-bold">{titel}</div>
         <div>{children}</div>
     </div>
+}
+
+async function getLapEntiersForSwimmer(id: string) {
+    const col = await getLapsCollection();
+    const result = await col.find({ swimmerId: id }).sort({ nr: 1 }).toArray()
+    return result
 }

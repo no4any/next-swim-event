@@ -1,11 +1,10 @@
 import { auth } from "@/lib/auth/auth";
 import { redirect } from "next/navigation";
 
-export default async function PrintPage({ params }: { params: { name: string, title: string } }) {
+export default async function PrintPage({ params }: { params: Promise<{ name: string, title: string }> }) {
     const user = await auth();
 
     if (user === null) redirect('/login');
-
 
     const { name, title } = await params;
 
