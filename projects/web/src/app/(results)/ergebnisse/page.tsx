@@ -3,18 +3,29 @@ import { getLapsForTeamId } from "@/lib/mongo/collections/laps/getLapsForTeamId.
 import { getSwimmers } from "@/lib/mongo/collections/swimmers/getSwimmers.function"
 import getTeams from "@/lib/mongo/collections/teams/getTeams.function";
 
-export const revalidate = 0
-export const dynamic = 'force-dynamic';
+export const revalidate = 300;
+
+function isBuildPhase() {
+    return process.env.NEXT_PHASE === 'phase-production-build'
+}
+
+function leadingZero(num: number) {
+    if (num < 10) {
+        return `0${num}`;
+    }
+
+    return `${num}`
+}
 
 export default async function ResultsPage() {
-    const results = await fetchResults();
+    const results = isBuildPhase() ? { swimmers: [], teams: [] } : await fetchResults();
 
-    //const now = new Date();
-    //const printNow = `${now.getDate()+1}.${now.getMonth()}.${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}`
-    //<div className="mb-3">Letztes Update: {printNow}</div>
+    const now = new Date();
+    const printNow = `${leadingZero(now.getDate())}.${leadingZero(now.getMonth() + 1)}.${now.getFullYear()} um ${leadingZero(now.getHours() + 2)}:${leadingZero(now.getMinutes())}`
 
     return <div>
         <h1 className="mb-3">Ergebnisse</h1>
+        <div className="mb-3">Letztes Update: {printNow}</div>
         <h2>Einzelwertung</h2>
         {results.swimmers.map((s, i) => <div className="grid grid-cols-4">
             <div>{i + 1}.</div>
@@ -50,6 +61,6 @@ async function fetchResults() {
     }
 }
 
-function sortLaps(a: {laps: number},b: {laps:number}) {
+function sortLaps(a: { laps: number }, b: { laps: number }) {
     return a.laps > b.laps ? -1 : 1;
 }

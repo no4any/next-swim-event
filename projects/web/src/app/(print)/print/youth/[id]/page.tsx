@@ -1,10 +1,12 @@
 import { auth } from "@/lib/auth/auth"
 import getAge from "@/lib/getAge";
-import { getLap } from "@/lib/mongo/collections/laps/getLap.function";
 import { getLapsForSwimmerId } from "@/lib/mongo/collections/laps/getLapsForSwimmerId.function";
 import { getSwimmer } from "@/lib/mongo/collections/swimmers/getSwimmer.function";
 import youthMedal from "@/lib/youthMedal";
 import { notFound } from "next/navigation";
+
+export const revalidate = 0
+export const dynamic = 'force-dynamic';
 
 export default async function ChildrenCert({ params }: { params: Promise<{ id: string }> }) {
     const user = await auth();
