@@ -1,18 +1,18 @@
 import { auth } from "@/lib/auth/auth";
 import { redirect } from "next/navigation";
 
-export default async function PrintPage({ params }: { params: Promise<{ name: string, title: string }> }) {
+export default async function PrintPage({ params }: { params: Promise<{ name: string, title: string, bind: string }> }) {
     const user = await auth();
 
     if (user === null) redirect('/login');
 
-    const { name, title } = await params;
+    const { name, title, bind } = await params;
 
     return <div className="print">
         <div className="page">
             <h1>Urkunde</h1>
             <h2>{decodeURIComponent(title)}</h2>
-            <p className="for">für</p>
+            <p className="for">{decodeURIComponent(bind)}</p>
             <h4>{decodeURIComponent(name)}</h4>
             <p>beim 24 Stunden-Schwimmen der DLRG KG Gießen e.V. vom 04. bis 05. Oktober 2025 im Westbad Gießen</p>
         </div>

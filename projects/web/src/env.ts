@@ -1,3 +1,5 @@
+export const isBuildPhase = process.env.NEXT_PHASE === 'phase-production-build';
+
 export const DOMAIN = process.env.DOMAIN || "dlrg-giessen.de";
 
 export const SALT = process.env.SALT || "SALT123";
