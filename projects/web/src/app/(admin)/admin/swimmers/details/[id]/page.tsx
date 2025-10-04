@@ -60,7 +60,7 @@ export default async function SwimmerDetailsPage({ params }: { params: Promise<{
             <Details titel="Newsletter">{swimmer.newsletter ? "Ja" : "Nein"}</Details>
             <Details titel="Team">{team && <Link href={`/admin/teams/${team._id.toString()}`}>{team.name}</Link>}</Details>
             <Details titel="Geschlossen">{swimmer.isClosed ? "Ja" : "Nein"}</Details>
-            <Details titel="Bahnen">{laps} {medal && <span>({medal})</span>}</Details>
+            <Details titel="Bahnen">{laps} {medal && <Link href={`/print/youth/${id}`}>({medal})</Link>}</Details>
         </Grid>
     </div>
 }
