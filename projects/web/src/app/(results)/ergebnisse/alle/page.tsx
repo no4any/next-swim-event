@@ -4,7 +4,8 @@ import getResultsAction from "@/lib/getResults.action";
 import { Swimmer, Team } from "@/lib/model";
 import { notFound } from "next/navigation";
 
-export const revalidate = 300;
+export const revalidate = 0;
+export const dynamic = 'force-dynamic';
 
 function dateToString(date: Date) {
     const hours = date.getHours();
@@ -14,8 +15,6 @@ function dateToString(date: Date) {
 }
 
 export default async function RankPage() {
-    if(isBuildPhase) return <div>Loading</div>
-
     const user = await auth();
 
     if(user === null) notFound();

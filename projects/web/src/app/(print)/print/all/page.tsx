@@ -2,7 +2,6 @@ import { auth } from "@/lib/auth/auth";
 import { notFound } from "next/navigation";
 import PlainCert from "./PlanCert.component";
 import RankedCert from "./RankedCert.component";
-import TeamCert from "./TeamCert.component";
 import getResultsAction from "@/lib/getResults.action";
 
 export const revalidate = 0;
@@ -64,12 +63,6 @@ export default async function ResultsPrintPage() {
         {results.swimmersFemale66.slice(0,3).map((swimmer, i) => <RankedCert key={i} rank={++i} title="Weiteste Strecke in der Altersgruppe 66 bis 75 Jahre" swimmer={swimmer} />)}
         <div className="page"><h1>Altergruppe 76 bis 99 weiblich</h1></div>
         {results.swimmersFemale76.slice(0,3).map((swimmer, i) => <RankedCert key={i} rank={++i} title="Weiteste Strecke in der Altersgruppe 76 bis 99 Jahre" swimmer={swimmer} />)}
-
-        {results.youngestMale && <PlainCert swimmer={results.youngestMale} title="Jüngster männlicher Teilnehmer"/>}
-        {results.oldestMale && <PlainCert swimmer={results.oldestMale} title="Ältester männlicher Teilnehmer"/>}
-
-        {results.youngestFemale && <PlainCert swimmer={results.youngestFemale} title="Jüngste weibliche Teilnehmerin"/>}
-        {results.oldestFemale && <PlainCert swimmer={results.oldestFemale} title="Älteste weibliche Teilnehmerin"/>}
     </div>
 }
 
